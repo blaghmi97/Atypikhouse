@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}AtypikHouse{% endblock %}</title>
+        {% block stylesheets %}
+       
+        
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="{{ asset('front/bootstrap.css') }}" />
+        <link rel="stylesheet" href="{{ asset('fontawesome/css/font-awesome.min.css') }}" />
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+       
+ 
+    </head>
+    <body>
+
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="{{path('homepage')}}">ATYPIKHOUSE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item">
+        <a class="nav-link" href="{{path('habitat_Add')}}"><i style="font-size:15px" class="fa fa-plus"></i> Ajouter une annonce</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{path('Annonces')}}"><i style="font-size:15px" class="fa fa-search"></i> Rechercher</a>
+      </li>
+           <li class="nav-item">
+        <a class="nav-link" href="{{path('listeprises')}}"><i style="font-size:15px" class="fa fa-bullhorn"></i> Les prises de vue</a>
+      </li>
+      
+    </ul>
+
+     <ul class="navbar-nav navbar-right">
+      {% if is_granted("ROLE_ADMIN") %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('adminpage') }}"><i style="font-size:15px" class="fa fa-cogs"></i>  Administration</a>
+      </li>
+      {% endif %}
+     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+      <li class="nav-item dropdown" style="margin-right: 60px;">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i style="font-size:15px" class="fa fa-user"></i>  {{app.user.username}}</a>
+        <div class="dropdown-menu"  >
+          <a class="dropdown-item" href="{{ path('mesprises')}}"><i style="font-size:18px;" class="fa fa-clipboard"></i> Mes prise de vue</a>
+          <a class="dropdown-item" href="{{ path('mesannonces')}}"><i style="font-size:18px;" class="fa fa-list-ul"></i> Mes Annonces</a>
+          <a class="dropdown-item" href="{{ path('mesreservations')}}"><i style="font-size:18px;" class="fa fa-shopping-cart"></i> Mes réservations</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}"><i style="font-size:18px;" class="fa fa-sign-out"></i> Se Déconnecter</a>
+        </div>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('fos_user_security_login') }}"><i style="font-size:18px" class="fa fa-sign-in"></i> Se Connecter</a>
+      </li>
+      {% endif %}
+    </ul>
+   
+  </div>
+</nav>
+
+
+
+<style>
+
+
+
+  footer{
+
+margin-top:280px;
+}
+
+
+
+
+</style>
+{% block list %}{% endblock %}
+
+ {% block body %}{% endblock %}
+
+
+
+        {% block javascripts %}{% endblock %}
+
+<footer style="position:relative; bottom:0; width:100%;">
+        <div class="container-fluid" style="padding: 50px 80px; background: #a0f2cf;" align="center">
+            <a href="facebook.com">
+                <i class="fa fa-facebook fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+            </a>
+            <a href="#">
+                    <i class="fa fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+            </a>
+            <a href="#">
+                    <i class="fa fa-google-plus fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+             </a>
+             <a href="#">
+                   <i class="fa fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+             </a>
+                           
+        </div>
+        <div style="background: #ffffff;">
+            <p style="color: #91BEC2; " align="center">
+                &copy; 2020 Copyright: AtypikHouse
+            </p>
+        </div>
+    </footer>
+       
+    </body>
+</html>

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<div class="container ">
+<br>
+<div class="card border-info mb-3" >
+  <div class="card-header">Ajouter une habitat</div>
+  <div class="card-body">
+
+    {{ form_start(form) }}
+        <div class="row">
+                <div class="col-md-4">
+        <div class="form-group">
+        {{ form_row(form.type ,{'attr' : {'class':'form-control'}}) }}
+        </div></div>
+            <div class="col-md-4">
+         <div class="form-group">
+      {{ form_row(form.pays,{'attr' : {'class':'form-control'}}) }}
+             </div>
+             </div>
+             <div class="col-md-4">
+         <div class="form-group">
+     <input type="submit" class="btn btn-success btn-block" value="Rechercher" />
+              </div>
+              </div></div>
+        
+     
+ 
+    {{ form_end(form) }}
+<br>
+ </div>
+    </div> </div>
+    {% for habitat in habitats %}
+
+
+<div class="col-md-4"  style="margin-top: 15px">
+<a href="{{path('annonces_show',{'id':habitat.id})}}">
+<div class="card" >
+   
+       {% for image in habitat.photos|slice(0,1) %}
+             <img class="card-img-top" src="{{ asset('uploads/images/' ~ image.Src ) }}" alt="ff " height="250 px" width="100 px">
+       {% endfor %}
+
+        {% if habitat.photos is empty %}
+              <img class="card-img-top" src="{{ asset('uploads/images/no-image.png' ) }}" alt="gf " height="250 px" width="100 px">
+        {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{habitat.titre |slice(0,15) }} ..</h5>
+     <hr>
+    <p class="card-text">{{habitat.description |slice(0,15) }} ...</p>
+    <hr>
+    <small float="right">{{habitat.datePub |date('d-m-Y H:i') }}</small>
+  </div>
+</div></a>
+</div>
+
+{% endfor %}
+    
+    
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block stylesheets %}{% endblock %}

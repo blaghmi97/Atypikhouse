@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container ">
+<br>
+<div class="card border-info mb-3" >
+  <div class="card-header">Ajouter une habitat</div>
+  <div class="card-body">
+
+    {{ form_start(form) }}
+        <div class="form-group">
+        {{ form_row(form.type ,{'attr' : {'class':'form-control'}}) }}
+        </div>
+        <div class="form-group">
+        {{ form_row(form.titre ,{'attr' : {'class':'form-control'}}) }}
+        </div>
+        <div class="row">
+        <div class="col-md-4">
+         <div class="form-group">
+         {{ form_row(form.nombreCouchage,{'attr' : {'class':'form-control'}}) }}
+            </div>
+            </div>
+            <div class="col-md-4">
+         <div class="form-group">
+          {{ form_row(form.surface,{'attr' : {'class':'form-control'}}) }}
+             </div>
+             </div>
+             <div class="col-md-4">
+         <div class="form-group">
+           {{ form_row(form.prix,{'attr' : {'class':'form-control'}}) }}
+              </div>
+              </div></div>
+         <div class="form-group">
+            {{ form_row(form.adresse,{'attr' : {'class':'form-control'}}) }}
+               </div>
+        <div class="row">
+        <div class="col-md-4">
+         <div class="form-group">
+         {{ form_label(form.codepostale, 'Code Postale') }}
+         {{ form_widget(form.codepostale,{'attr' : {'class':'form-control'}}) }}
+            </div>
+            </div>
+            <div class="col-md-4">
+         <div class="form-group">
+          {{ form_row(form.ville,{'attr' : {'class':'form-control'}}) }}
+             </div>
+             </div>
+             <div class="col-md-4">
+         <div class="form-group">
+           {{ form_row(form.pays,{'attr' : {'class':'form-control'}}) }}
+              </div>
+              </div></div>
+         <div class="form-group">
+               {{ form_row(form.description,{'attr' : {'class':'form-control'}}) }}
+                  </div>
+         <div class="form-group">
+                 {{ form_row(form.photos.Src,{'attr' : {'class':'form-control'}}) }}
+                  
+            </div>
+            
+        <input type="submit" class="btn btn-success btn-block" value="Ajouter" />
+    {{ form_end(form) }}
+<br>
+ </div>
+    </div> </div>
+    
+    
+    
+{% endblock %}

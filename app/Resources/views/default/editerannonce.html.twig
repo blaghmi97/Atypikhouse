@@ -1,0 +1,82 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container ">
+<br>
+<div class="card border-info mb-3" >
+  <div class="card-header">Modifier une habitat</div>
+  <div class="card-body">
+    {{ form_start(edit_form) }}
+
+        <div class="form-group">
+        {{ form_row(edit_form.type ,{'attr' : {'class':'form-control'}}) }}
+        </div>
+        <div class="form-group">
+                 {{ form_row(edit_form.titre,{'attr' : {'class':'form-control'}}) }}
+                  
+            </div>
+        <div class="row">
+        <div class="col-md-4">
+         <div class="form-group">
+         {{ form_row(edit_form.nombreCouchage,{'attr' : {'class':'form-control'}}) }}
+            </div>
+            </div>
+            <div class="col-md-4">
+         <div class="form-group">
+          {{ form_row(edit_form.surface,{'attr' : {'class':'form-control'}}) }}
+             </div>
+             </div>
+             <div class="col-md-4">
+         <div class="form-group">
+           {{ form_row(edit_form.prix,{'attr' : {'class':'form-control'}}) }}
+              </div>
+              </div></div>
+         <div class="form-group">
+            {{ form_row(edit_form.adresse,{'attr' : {'class':'form-control'}}) }}
+               </div>
+              <div class="row">
+        <div class="col-md-4">
+         <div class="form-group">
+        
+         {{ form_row(edit_form.codepostale,{'attr' : {'class':'form-control'}}) }}
+            </div>
+            </div>
+            <div class="col-md-4">
+         <div class="form-group">
+          {{ form_row(edit_form.ville,{'attr' : {'class':'form-control'}}) }}
+             </div>
+             </div>
+             <div class="col-md-4">
+         <div class="form-group">
+           {{ form_row(edit_form.pays,{'attr' : {'class':'form-control'}}) }}
+              </div>
+              </div></div>
+         <div class="form-group">
+               {{ form_row(edit_form.description,{'attr' : {'class':'form-control'}}) }}
+                  </div>
+         <div class="form-group">
+                 {{ form_row(edit_form.photos.Src,{'attr' : {'class':'form-control'}}) }}
+                  
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+        <input type="submit" class="btn btn-success btn-block" value="Editer" />
+    {{ form_end(edit_form) }}
+</div>
+    <div class="col-md-6">
+            {{ form_start(delete_form) }}
+                <input class="btn btn-danger btn-block" type="submit" value="Supprimer">
+            {{ form_end(delete_form) }}
+     </div>
+ </div>
+    </div> 
+    
+    
+    </div>
+    </div>
+{% endblock %}
+
+
+   
+

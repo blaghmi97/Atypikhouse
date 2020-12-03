@@ -1,0 +1,50 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ 
+<div class="jumbotron">
+  <h1 class="display-3">ATYPIKHOUSE</h1>
+  <p class="h5">Découvrez le surprenant monde de l’habitat alternatif.</p>
+  <hr class="my-4">
+  <p class="lead h6">Cabanes mobiles et nomades, cabanes intégrées à la terre, l’habitat roots, les cabanes vernaculaires pour l’habitat ou la location…</p>
+  
+</div>
+
+
+<div class="container">
+ <h4>Nos dernières annonces :</h4>
+<div class="row center">
+{% for habitat in habitats %}
+
+
+<div class="col-md-4"  style="margin-top: 15px">
+<a href="{{path('annonces_show',{'id':habitat.id})}}">
+<div class="card" >
+   
+       {% for image in habitat.photos|slice(0,1) %}
+             <img class="card-img-top" src="{{ asset('uploads/images/' ~ image.Src ) }}" alt="ff " height="250 px" width="100 px">
+       {% endfor %}
+
+        {% if habitat.photos is empty %}
+              <img class="card-img-top" src="{{ asset('uploads/images/no-image.png' ) }}" alt="gf " height="250 px" width="100 px">
+        {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{habitat.titre |slice(0,15) }} ..</h5>
+     <hr>
+    <p class="card-text">{{habitat.description |slice(0,15) }} ...</p>
+    <hr>
+    <small float="right">{{habitat.datePub |date('d-m-Y H:i') }}</small>
+  </div>
+</div></a>
+</div>
+
+{% endfor %}
+  </div>
+</div>
+
+{% endblock %}
+
+
+   
+

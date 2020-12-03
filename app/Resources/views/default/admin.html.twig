@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+{% block body %}
+<div class="container-fluid">
+   <div class="row">
+        <div class="col-md-3 ">
+        <br>
+
+<div class="list-group">
+ <label class="list-group-item list-group-item-action active h3">Gestion du site</label>
+  <a href="{{path('users')}}" class="list-group-item list-group-item-action h5">Gestion des utilisateurs</a>
+  <a href="{{path('habitat_index')}}" class="list-group-item list-group-item-action h5">Gestion des annonces</a>
+  <a href="{{path('listeprises')}}" class="list-group-item list-group-item-action h5">Gestion des prises de vues</a>
+</div>
+        </div>
+        <div class="col-md-9">
+{% block content %}
+
+
+
+
+{% endblock %}
+        <br>
+           </div>
+
+   </div>
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+ {% block javascripts %}
+
+ {% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+

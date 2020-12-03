@@ -1,0 +1,40 @@
+{% extends 'Default/admin.html.twig' %}
+
+{% block content %}
+    <h1>Liste des utilisateurs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>email</th>
+                <th>derniere connexion</th>
+                <th>Active</th>
+                <th>Role</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><a href="{{ path('habitat_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.lastlogin|date('d-m-Y H:i') }}</td>
+                <td>{% if (user.enabled == 0)   %} Non {% else %} Oui {% endif %} </td>
+                <td>{{ user.roles[0] }} </td>
+                
+                
+
+              
+            </tr>
+            
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+
+{{ knp_pagination_render(users) }}
+     </div>
+{% endblock %}

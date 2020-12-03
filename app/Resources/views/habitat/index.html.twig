@@ -1,0 +1,53 @@
+{% extends 'Default/admin.html.twig' %}
+
+{% block content %}
+    <h1>Liste des Habitats</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Titre</th>
+                <th>couchage</th>
+                <th>Surface</th>
+                <th>Prix</th>
+                <th>Adresse</th>
+                <th>Code Postale</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th>Date publication</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for habitat in habitats %}
+            <tr>
+                <td><a href="{{ path('annonces_show', { 'id': habitat.id }) }}">{{ habitat.id }}</a></td>
+                <td>{{ habitat.type|slice(0,10) }}</td>
+                <td>{{ habitat.titre|slice(0,10) }}</td>
+                <td>{{ habitat.nombreCouchage }}</td>
+                <td>{{ habitat.surface }}</td>
+                <td>{{ habitat.prix }}</td>
+                <td>{{ habitat.adresse|slice(0,10) }}</td>
+                <td>{{ habitat.codepostale }}</td>
+                <td>{{ habitat.ville }}</td>
+                <td>{{ habitat.pays }}</td>
+                <td>{% if habitat.datePub %}{{ habitat.datePub|date('Y-m-d H:i:s') }}{% endif %}</td>
+                
+                <td>
+                            <a class="btn btn-success" href="{{ path('annonces_show', { 'id': habitat.id }) }}">Afficher</a>
+                       
+                            <a class="btn btn-warning" href="{{ path('editannonce', { 'id': habitat.id }) }}">Editer</a>
+        
+                </td>
+            </tr>
+            
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+
+{{ knp_pagination_render(habitats) }}
+     </div>
+{% endblock %}
