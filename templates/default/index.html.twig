@@ -1,0 +1,258 @@
+
+{% extends 'base.html.twig' %}
+
+
+    {% block stylesheets %}
+      <style>
+
+.cookie-container {
+  position: fixed;
+  bottom: -50%;
+  left: 0;
+  right: 0;
+  background: #2f3640;
+  color: #f5f6fa;
+  padding: 0 32px;
+  box-shadow: 0 -2px 16px rgba(47, 54, 64, 0.39);
+
+  transition: 400ms;
+}
+
+.cookie-container.active {
+  bottom: 0;
+}
+
+.cookie-container a {
+  color: #f5f6fa;
+}
+
+.cookie-btn {
+  background: #ffffff;
+  border: 0;
+  padding: 12px 48px;
+  font-size: 18px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.jumbotron{
+      background-image: url("uploads/images/hbb.jpg");
+    background-size: cover;
+
+    background-repeat: no-repeat;
+}
+
+
+#ck1{
+color: #ffffff !important;
+}
+#ck2{
+  color: #ffffff !important;
+}
+#ck3{
+  color: #000000 !important;
+}
+#aty{
+
+    background-image: url("uploads/images/habitat.jpg");
+    background-size: cover;
+
+    background-repeat: no-repeat;
+
+}
+
+
+</style>
+        
+        {% endblock %}
+
+
+{% block body %}
+ 
+
+<div class="jumbotron">
+  <h1  align="center" style="font-size:45px">ATYPIKHOUSE</h1><br>
+  <h2  align="center" style="font-size:25px">Découvrez le surprenant monde de l’habitat alternatif.</h2><br>
+  <hr class="my-4">
+  <h3 class="lead " align="center">{{ atypik.description }}</h3>
+  <br><hr><br><br><br>
+  <p class="lead" align="center">
+    <a class="btn btn-primary btn-lg" href="{{ path('app_register') }}" role="button">Inscrivez-vous !</a>
+  </p>
+</div>
+
+
+<div class="container">
+ <h3>Nos dernières annonces :</h3>
+<div class="row center">
+{% for habitat in habitats %}
+
+
+<div class="col-md-4 col-12"  style="margin-top: 15px">
+<a href="{{path('annonces_show',{'id':habitat.id})}}">
+<div class="card" >
+   
+       {% for image in habitat.photos|slice(0,1) %}
+             <img class="card-img-top" src="{{ asset('uploads/images/' ~ image.Src ) }}" alt="Habitat alternatif " height="250 px" width="100 px">
+       {% endfor %}
+
+        {% if habitat.photos is empty %}
+              <img class="card-img-top" src="{{ asset('uploads/images/no-image.png' ) }}" alt="reserver habitat " height="250 px" width="100 px">
+        {% endif %}
+  <div class="card-body">
+    <h4 class="card-title">{{habitat.titre |slice(0,15) }} ..</h4>
+     <hr>
+    <p class="card-text">{{habitat.description |slice(0,15) }} ...</p>
+    <hr>
+    <small float="right">{{habitat.datePub |date('d-m-Y H:i') }}</small>
+  </div>
+</div></a>
+</div>
+
+{% endfor %}</div></div>
+<br> <br>
+
+
+<div id="aty" class="col-12">
+  <br> <br>
+ <h4 style="font-size:40px"> <center><strong>Pourquoi choisir AtypikHouse !</strong> </center></h4>
+ <br><br>
+<div class="row " style="margin-top: 15px;">
+
+<div class="col-md-4 col-12">
+  <div class="card text-white bg-primary mb-3" style="max-width: 38rem; margin-top: 15px; opacity: 0.9;">
+  <br>
+  <div class="card-body">
+  <center>  <image src="uploads/images/credit-card-100x100.webp" alt="paiement-atypikhouse">  </center>
+  <br>
+    <h5 class="card-text" style="text-align: center; font-size:23px">Un système de paiement simple et sécurisé .</h5>
+  </div>
+</div>
+</div>
+
+<div class="col-md-4 col-12"  style="margin-top: 15px">
+  <div class="card text-white bg-primary mb-3" style="max-width: 38rem; opacity: 0.9;">
+  <br>
+  <div class="card-body">
+  <center>  <image src="uploads/images/quality-100x100.webp" alt="qualité-atypikhouse">  </center>
+  <br>
+    <h5 class="card-text" style="text-align: center; font-size:23px">Un service unique, complet et de qualité .</h5>
+  </div>
+</div>
+</div>
+
+<div class="col-md-4 col-12"  style="margin-top: 15px">
+  <div class="card text-white bg-primary mb-3" style="max-width: 38rem; opacity: 0.9;">
+  <br>
+  <div class="card-body">
+  <center>  <image src="uploads/images/monitor-100x100.webp" alt="intuitive-atypikhouse">  </center>
+  <br>
+    <h5 class="card-text" style="text-align: center; font-size:23px">Une réservation intuitive et instantanée .</h5>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<br><br>
+
+
+
+<div>
+<div class="col-md-12">
+<center><h5 style="font-size:30px"> Ce que pensent nos clients .</h5></center> <br>
+<div class="row justify-content-around">
+<div class="col-md-5 ">
+<figure class="text-center" >
+  <blockquote class="blockquote">
+    <p class="mb-0" >Expérience vraimenent à recomander, nous avons résérvé une habitat par le biais d'AtypikHouse c'était vraimenent cool et professionel. A bientot !</p>
+  
+  </blockquote>
+  <figcaption class="blockquote-footer">
+    <cite title="Source Title" style="color: #000000 ;">ALEX</cite>
+  </figcaption>
+</figure>
+</div>
+
+<div class="col-md-5">
+
+<figure class="text-center">
+  <blockquote class="blockquote">
+    <p class="mb-0">Bonne idée de faire une telle plateforme, Merci à vous </p>
+  
+  </blockquote>
+  <figcaption class="blockquote-footer">
+    <cite title="Source Title" style="color: #000000 ;">Aurelie</cite>
+  </figcaption>
+</figure>
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+</div></div>
+</div></div>
+  </div>
+<br>
+
+
+
+
+
+
+
+ <div class="cookie-container">
+     <p style="font-size:25px" id="ck1">Controler l'utilisation de vos données personnelles.</p>
+      <p id="ck2">
+        Nous utilisons des technologies comme les coockies pour stocker et/ou accéder à des informations sur le terminal,comme des identifiants uniques,traiter des données personnelles non sensibles comme l'adresse IP.
+      </p>
+
+      <button class="cookie-btn" id="ck3">
+        Accepter et fermer
+      </button>
+    </div>
+
+
+
+</div>
+
+</div>
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+const cookieContainer = document.querySelector(".cookie-container");
+const cookieButton = document.querySelector(".cookie-btn");
+
+cookieButton.addEventListener("click", () => {
+  cookieContainer.classList.remove("active");
+  localStorage.setItem("cookieBannerDisplayed", "true");
+});
+
+setTimeout(() => {
+  if (!localStorage.getItem("cookieBannerDisplayed")) {
+    cookieContainer.classList.add("active");
+  }
+}, 2000);
+</script>
+
+
+{% endblock %}
+
+   
+
+
+   
+

@@ -1,0 +1,97 @@
+{% extends 'default/admin.html.twig' %}
+
+{% block content %}
+    <h1>Les statistique de notre AtypikHouse :</h1>
+
+   <div class="col-md-7">
+
+  <canvas id="myChart" width="30" height="30"></canvas>
+
+</div>
+{% endblock %}
+
+
+
+ {% block javascripts %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+   
+   $Cabane =0;
+   $Caravane =0;
+   $Mf = 0;
+   $Yourte = 0;
+   $Chalet = 0;
+   $autre = 0;
+
+{% for habitat in habitats %}
+
+    {% if habitat.type == "Cabane" %}
+        $Cabane = $Cabane +1;
+    {% elseif habitat.type == "Caravane" %}
+
+        $Caravane = $Caravane +1;
+    {% elseif habitat.type == "Maison flottante" %}
+        $Mf = $Mf +1;
+    {% elseif habitat.type == "Yourte" %}
+
+        $Yourte = $Yourte +1;
+    {% elseif habitat.type == "Chalet" %}
+  
+        $Chalet = $Chalet +1;
+    {% else %}
+         $autre = $autre + 1;
+    {% endif %}
+
+{% endfor %}
+
+
+  const labels = [
+    'Cabane',
+    'Caravane',
+    'Maison flottante',
+    'Yourte',
+    'Chalet',
+    'Autres ..',
+ 
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'Nos résérvatons',
+    backgroundColor: [
+                 'rgba(255, 99, 132, 0.5)',
+                  'rgba(54, 162, 235, 0.5)',
+                  'rgba(255, 206, 86, 0.5)',
+                  'rgba(75, 192, 192, 0.5)',
+                  'rgba(255, 159, 64, 0.5)',
+                   'rgba(15, 192, 192, 0.5)',
+    ],
+      borderColor: 'rgb(255, 99, 132)',
+      hoverOffset: 4 ,
+      data: [$Cabane, $Caravane, $Mf, $Yourte, $Chalet, $autre],
+      
+    }]
+  };
+
+  const config = {
+    type: 'pie',
+    data: data,
+    options: {}
+  };
+</script>
+
+
+
+<script>
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config 
+  );
+</script>
+
+
+
+
+ {% endblock %}

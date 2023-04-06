@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+<br>
+<div class="row">
+
+
+
+
+
+<div class="col-md-12">
+<div class="card bg-light " id="card2">
+  <div class="card-header">Messages recus</div>
+  <div class="card-body">
+   
+  {% for message in messages %}
+
+<div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <strong class="mr-auto">{{ message.Fromuser.username }}</strong>
+    <small>{{ message.datemessage|date('d-m-Y H:i') }}</small>
+  </div>
+  <div class="toast-body">
+    {{message.contexte}} <br>
+  {% if message.habitat %}
+    <a href="{{ path('annonces_show',{'id' : message.habitat.id}) }}">Voir l'annonce</a>
+    {% endif %}
+    <hr>
+    <label>Répondre :</label>
+    <form action="{{path('repondre') }}" method="post">
+    <input hidden name="id" type="number" value="{{message.FromUser.id}}" />
+    <input hidden name="hid" type="number" value="{{message.habitat.id}}" />
+    <div class="row">
+
+    <div class="col-md-8 col-8">
+    <input name="contexte" type="text" class="form-control" required />
+    </div>
+       
+    <div class="col-md-4 col-4">
+    <input class="btn btn-success btn-block" type="submit" value="Envoyer" />
+   
+    </div>
+     
+    </div>
+    </form>
+  </div>
+</div>
+  {% endfor %} 
+  </div>
+ 
+  
+</div>
+
+  
+  </div>
+
+  </div>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block stylesheets %}
+
+<style>
+#card1{
+height : 550px;
+overflow-x:hidden;
+overflow-y:scroll;
+}
+#card2{
+height : 500px;
+overflow-x:hidden;
+overflow-y:scroll;
+}
+
+</style>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+<br>
+{% for message in app.session.flashbag.get('success') %}
+<div class="alert alert-dismissible alert-success">
+  <h4 class="alert-heading"> {{ message }}</h4>
+</div>
+{% endfor %}
+
+
+
+
+
+<div class="card border-info mb-3" >
+  <div class="card-header">Mes Annonces :</div>
+  <div class="card-body">
+      
+      {% if habitats is empty %}
+
+
+  <br><br><br>
+  
+  
+     <center> <h2> Aucune Prise de vue </h2> </center>
+<br><br>
+
+
+{% endif %}
+<div class="row">
+
+
+{% for habitat in habitats %}
+
+
+<div class="col-md-4 col-lg-4" style="margin-top: 15px">
+<a href="{{path('annonces_show',{'id':habitat.id})}}">
+<div class="card">
+   
+       {% for image in habitat.photos|slice(0,1) %}
+                  <img class="card-img-top" src="{{ asset('uploads/images/' ~ image.Src ) }}" alt="ff " height="250 px" width="100 px">
+       {% endfor %}
+       
+       {% if habitat.photos is empty %}
+          <img class="card-img-top" src="{{ asset('uploads/images/no-image.png' ) }}" alt="gf " height="250 px" width="100 px">
+       {% endif %}
+
+  <div class="card-body">
+    <h5 class="card-title">{{habitat.titre |slice(0,25) }} ...</h5>
+     <hr>
+    <p class="card-text">{{habitat.description |slice(0,35) }} ...</p>
+    <hr>
+    <small align="center">{{habitat.datePub |date('d-m-Y H:i') }}</small>
+  </div>
+</div>
+</a>
+</div>
+
+{% endfor %}
+</div>
+
+</div>
+</div>
+<div class="pagination">
+
+{{ knp_pagination_render(habitats) }}
+</div>
+</div>
+
+{% endblock %}
+
+{% block stylesheets %}{% endblock %}

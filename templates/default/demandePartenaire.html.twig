@@ -1,0 +1,46 @@
+{% extends 'default/admin.html.twig' %}
+
+{% block content %}
+    <h1>Liste des demandes de partenariat :</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Statut</th>
+                <th>Activité</th>
+                <th>Zone d'activité</th>
+                <th>Connaissance</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for d in dms %}
+
+
+           {% if d.user.roles[0]== "ROLE_USER" %}
+
+            <tr>
+                <td>{{ d.user.username }}</a></td>
+                <td>{{ d.user.email }}</td>
+                <td>{{ d.user.roles[0] }}</td>
+                <td>{{ d.statut }}</a></td>
+                <td>{{ d.activite }}</td>
+                <td>{{ d.secteur }}</td>
+                <td>{{ d.connu }}</td>
+                <td> <a class="btn btn-info" href="{{path('usertopartenaire', { 'id': d.user.id })}}">Accepter </a> </td>       
+
+              
+            </tr>
+
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+
+{{ knp_pagination_render(dms) }}
+     </div>
+{% endblock %}

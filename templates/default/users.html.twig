@@ -1,0 +1,59 @@
+{% extends 'default/admin.html.twig' %}
+
+{% block content %}
+    <h1>Liste des utilisateurs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>email</th>
+                <th>Active</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        
+
+        {% for user in users %}
+            <tr>
+                <td><a href="{{ path('habitat_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{% if (user.enabled == 0)   %} Non {% else %} Oui {% endif %} </td>
+                <td>{{ user.roles[0] }} </td>
+                                <td>
+                    {% if user.roles[0]== "ROLE_USER" %}
+                        <a class="btn btn-info" href="{{path('usertoadmin', { 'id': user.id })}}">Rendre Admin</a>
+
+                    {% else %}
+
+                       <a class="btn btn-info" href="{{path('admintouser', { 'id': user.id })}}">Rendre User </a>
+                    {% endif %}
+
+
+                    {% if user.enabled == 1 %}
+                        <a class="btn btn-warning" href="{{path('desableuser', { 'id': user.id })}}">désactiver</a>
+
+                    {% else %}
+
+                       <a class="btn btn-warning" href="{{path('enableuser', { 'id': user.id })}}">Activer </a>
+                    {% endif %}
+                  
+                   <a onclick="return confirm('Vouler vraiment supprimer ce compte !')" href="{{path('supprimeruser', { 'id': user.id })}}" class="btn btn-danger" >Supprimer</a>
+                </td>
+            
+              
+            </tr>
+            
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+
+{{ knp_pagination_render(users) }}
+     </div>
+{% endblock %}

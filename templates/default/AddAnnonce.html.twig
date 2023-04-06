@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container ">
+<br>
+{% for message in app.session.flashbag.get('Erreur') %}
+<div class="alert alert-dismissible alert-danger">
+  <h4 class="alert-heading"> {{ message }}</h4>
+</div>
+<br>
+{% endfor %}
+<div class="card border-info mb-3" >
+  <div class="card-header">Ajouter une habitat</div>
+  <div class="card-body">
+
+    {{ form_start(form) }}
+        <div class="form-group">
+        {{ form_row(form.type ,{'attr' : {'class':'form-control'}}) }}
+        </div>
+        <div class="form-group">
+        {{ form_row(form.titre ,{'attr' : {'class':'form-control'}}) }}
+        </div>
+        <div class="row">
+        <div class="col-md-4 col-4">
+         <div class="form-group">
+         {{ form_row(form.nombreCouchage,{'attr' : {'class':'form-control'}}) }}
+            </div>
+            </div>
+            <div class="col-md-4 col-4">
+         <div class="form-group">
+          {{ form_row(form.surface,{'attr' : {'class':'form-control'}}) }}
+             </div>
+             </div>
+             <div class="col-md-4 col-4">
+         <div class="form-group">
+           {{ form_row(form.prix,{'attr' : {'class':'form-control'}}) }}
+              </div>
+              </div></div>
+         <div class="form-group">
+            {{ form_row(form.adresse,{'attr' : {'class':'form-control'}}) }}
+               </div>
+        <div class="row">
+        <div class="col-md-4 col-4">
+         <div class="form-group">
+         {{ form_label(form.codepostale, 'Code Postale') }}
+         {{ form_widget(form.codepostale,{'attr' : {'class':'form-control'}}) }}
+            </div>
+            </div>
+            <div class="col-md-4 col-4">
+         <div class="form-group">
+          {{ form_row(form.ville,{'attr' : {'class':'form-control'}}) }}
+             </div>
+             </div>
+             <div class="col-md-4 col-4">
+         <div class="form-group">
+           {{ form_row(form.pays,{'attr' : {'class':'form-control'}}) }}
+              </div>
+              </div></div>
+         <div class="form-group">
+               {{ form_row(form.description,{'attr' : {'class':'form-control'}}) }}
+                  </div>
+         <div class="form-group">
+                 {{ form_row(form.photos.Src,{'attr' : {'class':'form-control'}}) }}
+                  
+            </div>
+                   
+            <div >
+           {% if props %}
+                  {% for p in props %}
+                      {% if p.habitat == app.request.cookies.get('name') %}
+                
+         <div class="row">
+           <div class="col-md-3">
+              <div class="form-group">
+                 <label class="h6" >{{ p.Nom }} :</label>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="form-group">
+               <input name="{{ p.Nom }}" type="{{ p.input}}" class="form-control"  required/>
+              </div>
+            </div>
+            </div>              
+                    {% endif %} 
+                  {% endfor %}
+                  {% endif %}
+            </div>
+        <input type="submit" class="btn btn-success btn-block" value="Ajouter" />
+    {{ form_end(form) }}
+<br>
+ </div>
+    </div> 
+    </div>
+
+   
+<script type="text/javascript">
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+        const selectPlayer = document.getElementById('habitat_type') ;
+        
+        selectPlayer.addEventListener('change', function() {
+           var playerValue = selectPlayer.value ; 
+           var x = selectPlayer.selectedIndex;
+           document.cookie = "name = " + playerValue;
+              location.reload();
+        } ) ;
+   
+     document.getElementById('habitat_type').value = getCookie("name");
+</script>
+{% endblock %}

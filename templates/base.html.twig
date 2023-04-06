@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <html lang="fr">
+        <meta charset="UTF-8" />
+        <title> AtypikHouse | Votre plateforme pour résérver votre habitat partout en europe </title>
+        <meta name="description" content="Découvrez le surprenant monde de l’habitat alternatif partout en europe."/>
+        <meta name="keywords" content="Cabanes mobiles ,nomades, cabanes , habitat alternatif, maisons alternatives,habitat léger,AtypikHouse"/>
+        <meta name="ROBOTS" content="INDEX, FOLLOW">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="AtypikHouse">
+        
+        {% block stylesheets %}
+       
+        
+        {% endblock %}
+        <link rel="icon" type="image/JPG" href="{{ asset('icons/at.JPG') }}" />
+        <link rel="stylesheet" href="{{ asset('front/bootstrap.css') }}" />
+        <link rel="stylesheet" href="{{ asset('front/front.css') }}" />
+        <link rel="stylesheet" href="{{ asset('f.css') }}" />
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+      
+      
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+       
+ 
+    </head>
+    <body>
+
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="{{path('homepage')}}">ATYPIKHOUSE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      {% if is_granted("ROLE_PARTENAIRE")  %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{path('habitat_Add')}}"><i style="font-size:15px" class="fa fa-plus"></i> Ajouter une annonce</a>
+      </li>
+      {% endif %}
+
+      {% if app.user.roles[0]== "ROLE_USER" %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{path('partenaire')}}"><i style="font-size:15px" class="fa fa-plus"></i> Devenir Partenaire</a>
+      </li>
+      {% endif %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{path('Annonces')}}"><i style="font-size:15px" class="fa fa-search"></i> Rechercher</a>
+      </li>
+           <li class="nav-item">
+        <a class="nav-link" href="{{path('listeprises')}}"><i style="font-size:15px" class="fa fa-bullhorn"></i> Les prises de vue</a>
+      </li>
+      
+    </ul>
+
+     <ul class="navbar-nav navbar-right">
+      {% if is_granted("ROLE_ADMIN") %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('adminpage') }}"><i style="font-size:15px" class="fa fa-cogs"></i>  Administration</a>
+      </li>
+      {% endif %}
+     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+      <li class="nav-item dropdown" style="margin-right: 60px;">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i style="font-size:15px" class="fa fa-user"></i>  {{app.user.username}}</a>
+        <div class="dropdown-menu"  >
+          <a class="dropdown-item" href="{{ path('mesprises')}}"><i style="font-size:18px;" class="fa fa-clipboard"></i> Mes prise de vue</a>
+          {% if is_granted("ROLE_PARTENAIRE")  %}
+          <a class="dropdown-item" href="{{ path('mesannonces')}}"><i style="font-size:18px;" class="fa fa-list-ul"></i> Mes Annonces</a>
+          {% endif %}
+          <a class="dropdown-item" href="{{ path('mesreservations')}}"><i style="font-size:18px;" class="fa fa-shopping-cart"></i> Mes réservations</a>
+          <a class="dropdown-item" href="{{ path('messagerie')}}"><i style="font-size:18px;" class="fa fa-envelope"></i> Ma messagerie</a>
+
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{{ path('app_logout') }}"><i style="font-size:18px;" class="fa fa-sign-out"></i> Se Déconnecter</a>
+        </div>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('app_login') }}"><i style="font-size:18px" class="fa fa-sign-in"></i> Se Connecter</a>
+      </li>
+      {% endif %}
+    </ul>
+   
+  </div>
+</nav>
+
+
+
+<style>
+
+
+footer{
+
+
+position:relative;
+
+bottom:0;
+
+width:100%;
+
+padding-top:400px;
+
+height:50px;
+
+}
+
+
+
+</style>
+{% block list %}{% endblock %}
+
+ {% block body %}{% endblock %}
+
+        {% block javascripts %}{% endblock %}
+
+<footer style="position:relative; bottom:0; width:100%;">
+        <div class="container-fluid" style="padding: 50px 80px; background: #a0f2cf;" align="center">
+            <div class="row justify-content-center">
+                <div class="col-md-1 col-2">
+            <a href="https://www.facebook.com/AtypikHome/">
+                <i class="fa fa-facebook fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+           
+
+            </a>
+           
+            </div>
+            <div class="col-md-1 col-2">
+            <a href="https://www.twitter.com/AtypikHome/">
+                    <i class="fa fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                  
+              
+            </a>
+
+            
+             </div>
+            <div class="col-md-1 col-2">
+            <a href="https://www.google.com/AtypikHome/">
+                    <i class="fa fa-google-plus fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                
+             </a>
+             
+              </div>
+            <div class="col-md-1 col-2">
+            <a href="https://www.instagram.com/AtypikHome/">
+             <center>       <i class="fa fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"></i></center>
+             
+             </a>
+             
+             </div>
+             </div>
+             <br>
+           <hr> 
+            <div class="row justify-content-center">
+                <div class="col-md-3 col-12">
+           <a href="{{path('mentions')}}" >Mentions légales</a>   
+                </div>
+                <div class="col-md-3 col-12">
+           <a href="{{path('politique')}}">Politique de confidentialité</a> 
+           </div>
+                <div class="col-md-3 col-12">
+             <a href="{{path('cgu')}}">CGU</a>   
+                </div>  
+                
+                <div class="col-md-3 col-12">
+             <a href="{{path('cgv')}}">CGV</a>   
+                </div>        
+        </div>
+      </div>
+        <div class="col-md-12 col-12" style="background: #ffffff;">
+            <p style="color: black; " align="center">
+                &copy; 2020 : AtypikHouse
+            </p>
+        </div>
+    </footer>
+       
+
+
+    </body>
+</html>
+

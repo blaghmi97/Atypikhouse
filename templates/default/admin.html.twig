@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+{% block body %}
+<div class="container-fluid">
+   <div class="row">
+        <div class="col-md-3 ">
+        <br>
+
+<div class="list-group">
+ <label class="list-group-item list-group-item-action active h3">Gestion du site</label>
+ <a href="{{path('description')}}" class="list-group-item list-group-item-action h5">Gestion de contenu</a>
+  <a href="{{path('statistique')}}" class="list-group-item list-group-item-action h5">Nos Statistiques</a>
+  <a href="{{path('users')}}" class="list-group-item list-group-item-action h5">Gestion des Utilisateurs</a>
+  <a href="{{path('liste_partenariat')}}" class="list-group-item list-group-item-action h5">Gestion des Demandes de partenariat</a>
+  <a href="{{path('Annonces')}}" class="list-group-item list-group-item-action h5">Gestion des Annonces et des commentaires</a>
+  <a href="{{path('prop')}}" class="list-group-item list-group-item-action h5">Gestion des propriétés</a>
+  <a href="{{path('listeprises')}}" class="list-group-item list-group-item-action h5">Gestion des Prises de vues</a>
+</div>
+        </div>
+        <div class="col-md-9">
+{% block content %}
+
+
+
+
+{% endblock %}
+        <br>
+           </div>
+
+   </div>
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+ {% block javascripts %}
+
+ {% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+

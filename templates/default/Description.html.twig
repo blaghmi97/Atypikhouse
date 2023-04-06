@@ -1,0 +1,30 @@
+{% extends 'default/admin.html.twig' %}
+
+{% block content %}
+
+    <h1>La description de notre site ATYPIKHOUSE actuelle : </h1>
+<br> 
+<hr>
+<br>
+    <p> {{ atyp.description }} </p>
+<br><br><br>  
+     
+
+      <form action="{{path('editdescr') }}" method="post">
+  
+    <div class="row">
+
+    <h3> La nouvelle description d'AtypikHouse  : </h3>
+    <br>
+    <div class="col-md-8 col-8">
+    <input name="descr" type="textarea" class="form-control" required />
+    </div>
+       
+    <div class="col-md-4 col-4">
+    <input class="btn btn-success btn-block" type="submit" value="Modifier" />
+    </div>
+     
+    </div>
+    </form>
+   
+{% endblock %}

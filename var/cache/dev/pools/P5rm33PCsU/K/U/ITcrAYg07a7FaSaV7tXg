@@ -1,0 +1,103 @@
+<?php //App.Entity.Message
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        (($f = &\Symfony\Component\VarExporter\Internal\Registry::$factories)['Symfony\\Component\\Validator\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::f('Symfony\\Component\\Validator\\Mapping\\ClassMetadata'))(),
+        ($f['Symfony\\Component\\Validator\\Mapping\\PropertyMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::f('Symfony\\Component\\Validator\\Mapping\\PropertyMetadata'))(),
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Symfony\\Component\\Validator\\Constraints\\NotBlank'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\NotBlank')),
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\Length'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\Length')),
+        $f['Symfony\\Component\\Validator\\Mapping\\PropertyMetadata'](),
+        clone $p['Symfony\\Component\\Validator\\Constraints\\NotBlank'],
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\Message',
+                'contexte',
+                4 => 'habitat',
+            ],
+            'defaultGroup' => [
+                'Message',
+            ],
+            'members' => [
+                [
+                    'contexte' => [
+                        $o[1],
+                    ],
+                    'habitat' => [
+                        $o[4],
+                    ],
+                ],
+            ],
+            'properties' => [
+                [
+                    'contexte' => $o[1],
+                    'habitat' => $o[4],
+                ],
+            ],
+            'constraints' => [
+                1 => [
+                    $o[2],
+                    $o[3],
+                ],
+                4 => [
+                    $o[5],
+                ],
+            ],
+            'constraintsByGroup' => [
+                1 => [
+                    'Default' => [
+                        $o[2],
+                        $o[3],
+                    ],
+                    'Message' => [
+                        $o[2],
+                        $o[3],
+                    ],
+                ],
+                4 => [
+                    'Default' => [
+                        $o[5],
+                    ],
+                    'Message' => [
+                        $o[5],
+                    ],
+                ],
+            ],
+            'class' => [
+                1 => 'App\\Entity\\Message',
+                4 => 'App\\Entity\\Message',
+            ],
+            'property' => [
+                1 => 'contexte',
+                4 => 'habitat',
+            ],
+            'groups' => [
+                2 => [
+                    'Default',
+                    'Message',
+                ],
+                [
+                    'Default',
+                    'Message',
+                ],
+                5 => [
+                    'Default',
+                    'Message',
+                ],
+            ],
+            'maxMessage' => [
+                3 => 'Veuillez minimiser votre commentaire !',
+            ],
+            'max' => [
+                3 => 300,
+            ],
+            'allowEmptyString' => [
+                3 => false,
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

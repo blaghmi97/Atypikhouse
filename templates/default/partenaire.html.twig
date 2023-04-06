@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container ">
+{% for message in app.session.flashbag.get('success') %}
+<br>
+<div class="alert alert-dismissible alert-success">
+  <h4 class="alert-heading"> {{ message }}</h4>
+</div>
+<br>
+{% endfor %}
+<h2> REJOIGNEZ L'AVENTURE ET BOOSTEZ VOS VENTES ! </h2>
+<br><br>
+<div class="card border-info mb-3" >
+  <div class="card-header">Devenir Partenaire avec ATYPIKHOUSE :</div>
+  <div class="card-body">
+
+<form action="{{path('dm_partenaire') }}" method="post">
+
+
+
+    <div class="row">
+    <div class="col-md-3 col-3">
+    <label for="statut"><B> <U> Je suis :</B> </U></label>
+    </div>
+    <div class="col-md-3 col-3">
+       <input class="form-check-input" type="radio" name="statut" id="Particulier" value="Particulier" required>
+                     <label class="form-check-label" for="Particulier">
+                              un Particulier
+                      </label>
+    </div>
+    <div class="col-md-3 col-3">
+       <input class="form-check-input" type="radio" name="statut" id="Professionnel" value="Professionnel">
+                      <label class="form-check-label" for="Professionnel">
+                              un Professionnel
+                      </label>
+    </div>
+        <div class="col-md-3 col-3">
+       <input class="form-check-input" type="radio" name="statut" id="Association" value="Association">
+                            <label class="form-check-label" for="Association">
+                              une Association
+                      </label>
+    </div>
+    </div>
+
+<br><hr><br>
+
+    <div class="row">
+    <div class="col-md-4 col-4">
+    <label > <B> <U>  C'est mon activité : </B></U></label>
+    </div>
+    <div class="col-md-4 col-4">
+       <input class="form-check-input" type="radio" name="activite" id="Principale" value="Principale" required>
+              <label class="form-check-label" for="Principale">
+          Principale
+        </label>
+    </div>
+    <div class="col-md-4 col-4">
+       <input class="form-check-input" type="radio" name="activite" id="Secondaire" value="Secondaire">
+                     <label class="form-check-label" for="Secondaire">
+                           Secondaire
+                    </label>
+    </div>
+    </div>
+
+<br><hr><br>
+
+    <div class="row">
+    <div class="col-md-4 col-4">
+    <label > <B> <U>J'ai des biens :</B> </U></label>
+    </div>
+    <div class="col-md-4 col-4">
+       <input class="form-check-input" type="radio" name="lieu" id="En France" value="En France" required>
+              <label class="form-check-label" for="En France">
+           Seulement en France
+        </label>
+    </div>
+    <div class="col-md-4 col-4">
+       <input class="form-check-input" type="radio" name="lieu" id="En Europe" value="En Europe">
+              <label class="form-check-label" for="En Europe">
+          Partout en Enrope
+        </label>
+    </div>
+    </div>
+
+<br><hr><br>
+
+        <div class="row">
+    <div class="col-md-4 col-4">
+    <label for="conn"> <B> <U>Comment vous nous-avez connu ?</B> </U></label>
+    </div>
+
+    <div class="col-md-6 col-6">
+    <div class="form-group">
+   
+   <select class="form-control" name="connu" id="conn" >
+        <option value="Moteur de recherche">Moteur de recherche</option>
+        <option value="Bouche à oreille">Bouche à oreille</option>
+        <option value="Réseaux Sociaux">Réseaux Sociaux</option>
+        <option value="Autres">Autres</option>
+       
+      </select>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+<br><hr>
+    <div class="col-md-12 col-12">
+    <input class="btn btn-success btn-block" type="submit" value="Envoyer" />
+   
+    </div>
+     <br>
+
+    </div>
+    </form>
+
+<br>
+ </div>
+    </div> </div>
+    
+    
+    
+{% endblock %}

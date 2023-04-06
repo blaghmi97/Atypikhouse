@@ -1,0 +1,135 @@
+{% extends 'default/admin.html.twig' %}
+
+{% block content %}
+
+{% for message in app.session.flashbag.get('success') %}
+<br>
+<div class="alert alert-dismissible alert-success">
+  <h4 class="alert-heading"> {{ message }}</h4>
+</div>
+<br>
+{% endfor %}
+
+    <h1>Gestions des propriétés :</h1>
+   <br>
+<div class="card border-info mb-3" >
+  <div class="card-header">Ajouter une propriété :</div>
+  <div class="card-body">
+ <form action="{{path('Ajoutprodyn') }}" method="post">
+  <div class="row">
+    <div class="col-md-3 col-3">
+    <label for="type"> <B> <U>Type d'habitat :</B> </U></label>
+    </div>
+    
+    <div class="col-md-3 col-3">
+    <div class="form-group">
+   <select class="form-control" name="type" id="type" >
+        <option value="Cabane">Cabane</option>
+        <option value="Caravale">Caravale</option>
+        <option value="Chalet">Chalet</option>
+        <option value="Maison container">Maison container</option>
+        <option value="Maison flottante">Maison flottante</option>
+        <option value="Maison mobile">Maison mobile</option>
+        <option value="Yourte">Yourte</option>
+    </select>
+    </div>
+    </div>
+
+       <div class="col-md-3 col-3">
+    <label for="inp"> <B> <U>Type d'Input :</B> </U></label>
+    </div>
+
+    <div class="col-md-3 col-3">
+    <div class="form-group">
+   <select class="form-control" name="inp" id="inp" >
+        <option value="number">Entier</option>
+        <option value="float">Float</option>
+        <option value="text">String</option>
+        <option value="date">Date</option>
+    </select>
+    </div>
+    </div>
+</div>
+
+  <div class="row">
+    <div class="col-md-4 col-4">
+    <label for="pro"> <B> <U>La propriété :</B> </U></label>
+    </div>
+    <div class="col-md-5 col-5">
+    <div class="form-group">
+   
+
+  <input type="text" class="form-control" id="pro" name="pro" required>
+
+    </div>
+    </div>
+
+</div>
+
+
+<input class="btn btn-success btn-block" type="submit" value="Envoyer" />
+</form>
+</div>
+</div>
+<br><br>
+
+ <h4> Chercher les propriétés par type d'habitat : </h4>
+ <br>
+
+
+<form action="{{path('chercheprop') }}" method="post">
+ <div class="row">
+    <div class="col-md-3 col-3">
+    <label for="typ"> <B> <U>Type d'habitat :</B> </U></label>
+    </div>
+    <div class="col-5">
+    <div class="form-group">
+   <select class="form-control" name="typ" id="typ" >
+        <option value="Cabane">Cabane</option>
+        <option value="Caravale">Caravale</option>
+        <option value="Chalet">Chalet</option>
+        <option value="Maison container">Maison container</option>
+        <option value="Maison flottante">Maison flottante</option>
+        <option value="Maison mobile">Maison mobile</option>
+        <option value="Yourte">Yourte</option>
+    </select>
+    </div>
+    </div>
+        <div class="col-4">
+    <div class="form-group">
+    <input class="btn btn-info btn-block" type="submit" value="Chercher" />
+       </form>
+          </div>
+</div></div>
+
+
+<br><hr><br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom de la Propriété</th>
+                <th>Type d'habitat</th>
+                <th>Type d'input</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for p in props %}
+            <tr>
+                <td> {{p.Nom}} </td>
+                <td> {{p.habitat}} </td>
+                <td> {{p.input}} </td>
+                <td> <a onclick="return confirm('Vouler vraiment supprimer cette propriété !')" href="{{path('supprimerpropriete', { 'id': p.id })}}" class="btn btn-danger" >Supprimer</a> </td>
+                
+            </tr>
+            
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+
+
+{{ knp_pagination_render(props) }}
+
+     </div>
+{% endblock %}
